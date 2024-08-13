@@ -8,8 +8,7 @@ import jakarta.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class DrinkEntities {
-
+public class DishEntities {
     @Id
     private UUID id;
 
@@ -17,7 +16,7 @@ public class DrinkEntities {
     private String name;
 
     @Column
-    private String type;
+    private String description;
 
 
     public UUID getId() {
@@ -31,16 +30,13 @@ public class DrinkEntities {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getType() {
-        return type;
+    public String getDescription() {
+        return description;
     }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

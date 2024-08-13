@@ -3,7 +3,7 @@ package com.fabianofazan.restauranteapi.controllers;
 
 import com.fabianofazan.restauranteapi.models.dto.DrinkDto;
 import com.fabianofazan.restauranteapi.models.entities.DrinkEntities;
-import com.fabianofazan.restauranteapi.models.service.DrinkService;
+import com.fabianofazan.restauranteapi.service.DrinkService;
 import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

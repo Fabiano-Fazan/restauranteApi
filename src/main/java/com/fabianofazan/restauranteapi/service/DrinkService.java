@@ -1,4 +1,4 @@
-package com.fabianofazan.restauranteapi.models.service;
+package com.fabianofazan.restauranteapi.service;
 
 
 import com.fabianofazan.restauranteapi.models.dto.DrinkDto;
@@ -13,10 +13,10 @@ import java.util.UUID;
 
 @Service
 public class DrinkService {
-    @Autowired
+
     private DrinkRepository drinkRepository;
 
-
+    @Autowired
     public DrinkService(DrinkRepository drinkRepository) {
         this.drinkRepository = drinkRepository;
     }
@@ -50,7 +50,7 @@ public class DrinkService {
             drink.setType(drinkDto.type());
             drinkRepository.save(drink);
         } else {
-            System.out.println("Drink not found");
+            System.out.println("Bebida não encontrada");
         }
        return drinkRepository.save(drink);
     }

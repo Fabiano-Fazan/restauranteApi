@@ -1,4 +1,4 @@
-package com.fabianofazan.restauranteapi.models.service;
+package com.fabianofazan.restauranteapi.service;
 
 
 import com.fabianofazan.restauranteapi.models.dto.ClientDto;
@@ -14,10 +14,10 @@ import java.util.UUID;
 
 @Service
 public class ClientService {
-    @Autowired
+
     private ClientRepository clientRepository;
 
-
+    @Autowired
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
