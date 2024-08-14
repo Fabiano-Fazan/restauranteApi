@@ -16,7 +16,7 @@ import java.util.UUID;
 @Service
 public class DishService {
 
-    private DishRepository dishRepository;
+    private final DishRepository dishRepository;
 
     @Autowired
     public DishService(DishRepository dishRepository) {
@@ -39,7 +39,7 @@ public class DishService {
         return dishRepository.findById(id).orElseThrow(()-> new RuntimeException("ID" + id + "não encontrado"));
     }
 
-    public List<DishEntities> findByNameContainingIgnoreCase(String name){
+    public List<DishEntities> findByName(String name){
         return dishRepository.findByNameContainingIgnoreCase(name);
 
     }

@@ -4,7 +4,6 @@ package com.fabianofazan.restauranteapi.controllers;
 import com.fabianofazan.restauranteapi.models.dto.DishDto;
 import com.fabianofazan.restauranteapi.models.entities.DishEntities;
 import com.fabianofazan.restauranteapi.service.DishService;
-import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +12,16 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/dish")
+
+
 public class DishController {
-@Autowired
+
     DishService dishService;
 
-    @Id
-    private final UUID id  = UUID.randomUUID();
+    @Autowired
+    public DishController(DishService dishService) {
+        this.dishService = dishService;
+    }
 
     @PostMapping
     public DishEntities create (@RequestBody DishDto dishDto){
@@ -37,7 +40,7 @@ public class DishController {
 
     @GetMapping ("name/{name}")
     public List<DishEntities> findByName(@PathVariable String name) {
-        return dishService.findByNameContainingIgnoreCase(name);
+        return dishService.findByName(name);
     }
 
     @PutMapping ("/{id}")

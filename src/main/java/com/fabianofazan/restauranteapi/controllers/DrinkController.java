@@ -4,7 +4,6 @@ package com.fabianofazan.restauranteapi.controllers;
 import com.fabianofazan.restauranteapi.models.dto.DrinkDto;
 import com.fabianofazan.restauranteapi.models.entities.DrinkEntities;
 import com.fabianofazan.restauranteapi.service.DrinkService;
-import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +13,14 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/drink")
 public class DrinkController {
-    @Autowired
+
     DrinkService drinkService;
 
-    @Id
-    private final UUID id = UUID.randomUUID();
+
+    @Autowired
+     public DrinkController(DrinkService drinkService) {
+         this.drinkService = drinkService;
+     }
 
 
     @PostMapping

@@ -4,7 +4,6 @@ package com.fabianofazan.restauranteapi.controllers;
 import com.fabianofazan.restauranteapi.models.dto.ClientDto;
 import com.fabianofazan.restauranteapi.models.entities.ClientEntities;
 import com.fabianofazan.restauranteapi.service.ClientService;
-import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +13,13 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/client")
 public class ClientController {
-    @Autowired
+
     ClientService clientService;
 
-    @Id
-    private final UUID id = UUID.randomUUID();
+    @Autowired
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
+    }
 
     @PostMapping
     public ClientEntities create(@RequestBody ClientDto clientDto) {
@@ -37,12 +38,16 @@ public class ClientController {
 
     @GetMapping ("/name/{name}")
     public List<ClientEntities> findByName(@PathVariable String name){
-        return clientService.findByNameContainingIgnoreCase(name);
+        return clientService.findByName(name);
+    }
+    @GetMapping("/document/{document}")
+    public List<ClientEntities> findByDocument(@PathVariable String document){
+        return clientService.findByDocument(document);
     }
 
     @PutMapping ("/{id}")
-    public ClientEntities update(@PathVariable UUID id, @RequestBody ClientDto clientDto){
-        return clientService.update(id, clientDto);
+    public ClientEntities update (@PathVariable UUID id, @RequestBody ClientDto clientDto){
+        return clientService.updateClientEntities(id, clientDto);
     }
 
     @DeleteMapping ("/{id}")

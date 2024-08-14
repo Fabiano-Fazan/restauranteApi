@@ -15,7 +15,7 @@ import java.util.UUID;
 @Service
 public class ClientService {
 
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     @Autowired
     public ClientService(ClientRepository clientRepository) {
@@ -38,11 +38,15 @@ public class ClientService {
         return clientRepository.findById(id).orElseThrow(() -> new RuntimeException("ID: " + id + " not found"));
     }
 
-    public List<ClientEntities> findByNameContainingIgnoreCase(String name) {
+    public List<ClientEntities> findByName(String name) {
         return clientRepository.findByNameContainingIgnoreCase(name);
     }
 
-    public ClientEntities update( UUID id, ClientDto clientDto) {
+    public List<ClientEntities> findByDocument(String document) {
+        return clientRepository.findByDocumentContainingIgnoreCase(document);
+    }
+
+    public ClientEntities updateClientEntities( UUID id, ClientDto clientDto) {
         Optional<ClientEntities> optionalClientEntities = clientRepository.findById(id);
         ClientEntities client = null;
         if (optionalClientEntities.isPresent()) {
@@ -53,8 +57,8 @@ public class ClientService {
             System.out.println("Error: Client not found");
         }
         return clientRepository.save(client);
-
     }
+
    public void deleteClientEntities(UUID id) {
         ClientEntities clientEntities = findById(id);
          clientRepository.delete(clientEntities);

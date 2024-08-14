@@ -13,7 +13,7 @@ public class ClientEntities {
     @Column
     private String name;
 
-    @Column (nullable = false, unique = true, length = 5)
+    @Column
     private String document;
 
     public UUID getId() {
